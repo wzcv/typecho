@@ -229,10 +229,10 @@ class Typecho_Common
      * 异常截获函数
      *
      * @access public
-     * @param Exception $exception 截获的异常
+     * @param $exception 截获的异常
      * @return void
      */
-    public static function exceptionHandle(Exception $exception)
+    public static function exceptionHandle($exception)
     {
         @ob_end_clean();
 
@@ -414,7 +414,7 @@ EOF;
     {
         return !empty($_SERVER['HTTP_APPNAME'])                     // SAE
             || !!getenv('HTTP_BAE_ENV_APPID')                       // BAE
-            || !!getenv('SERVER_SOFTWARE')                          // BAE 3.0
+            || !!getenv('HTTP_BAE_LOGID')                           // BAE 3.0
             || (ini_get('acl.app_id') && class_exists('Alibaba'))   // ACE
             || (isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'],'Google App Engine') !== false) // GAE
             ;
